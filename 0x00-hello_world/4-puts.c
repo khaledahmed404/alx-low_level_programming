@@ -1,6 +1,14 @@
 #include <stdio.h>
-int main(){
-char alo[] = "\"Programming is like building a multilingual puzzle";
-puts(alo);
-return 0;
+
+/**
+ * main - Entry point
+ *
+ * Description: A C program that prints the string using the puts function.
+ *
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+	puts("\"Programming is like building a multilingual puzzle ");
+	return (0);
 }
