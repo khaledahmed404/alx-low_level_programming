@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * print_nember - prints an intger
+ * print_number - prints an intger
  *
  * @n: the intger to be printed
  */
 
-void print_nember(int n)
+void print_number(int n)
 {
 	unsigned int num = n;
 
@@ -18,7 +18,7 @@ void print_nember(int n)
 
 	if ((num / 10) > 0)
 	{
-		print_nember(num / 10);
+		print_number(num / 10);
 	}
 
 	_putchar((num % 10) + 48);
