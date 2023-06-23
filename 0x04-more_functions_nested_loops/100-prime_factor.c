@@ -2,38 +2,24 @@
 #include <math.h>
 
 /**
- *Function to find the largest prime factor of a given number
- * 
- * Divide the number by 2 until it is no longer divisible by 2
- *
- * Check for division by odd prime numbers starting from 3
- *
- * If the remaining number is greater than 2, it is a prime factor
+ * main - main block
+ * Description: Find and print the largest prime factor of the number
+ * 612852475143
+ * Return: 0
  */
-
-long long largestPrimeFactor(long long number)
+int main(void)
 {
-	long long i, largestFactor;
+	int c;
+	long num = 612852475143;
 
-	while (number % 2 == 0)
+	for (c = (int) sqrt(num); c > 2; c++)
 	{
-		largestFactor = 2;
-		number = number / 2;
-	}
-
-	for (i = 3; i <= sqrt(number); i = i + 2)
-	{
-		while (number % i == 0)
+		if (num % c == 0)
 		{
-			largestFactor = i;
-			number = number / i;
+			printf("%d\n", c);
+			break;
 		}
 	}
 
-	if (number > 2)
-	{
-		largestFactor = number;
-	}
-
-	return (largestFactor);
+	return (0);
 }
