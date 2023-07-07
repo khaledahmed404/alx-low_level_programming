@@ -36,4 +36,5 @@ int main(int argc, char *argv[])
 		count++;
 	}
 	printf("%d\n", sum);
-	r
+	return (0);
+}
