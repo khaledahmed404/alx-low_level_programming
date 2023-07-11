@@ -1,53 +1,78 @@
 #include <stdlib.h>
+#include "main.h"
 
 /**
- * strtow - Splits a string into an array of words
- * @str: Pointer to the string to be split
+ * count_word - helper function to count the number of words in a string
+ * @s: string to evaluate
  *
- * This function takes a string and splits it into individual words.
- * The words are stored in a dynamically allocated array of strings.
- *
- * Return: Pointer to the array of strings (words) if successful,
- *         or NULL if `str` is NULL, empty, or memory allocation fails.
+ * Return: number of words
  */
+int count_word(char *s)
+{
+	int flag, c, w;
 
+	flag = 0;
+	w = 0;
+
+	for (c = 0; s[c] != '\0'; c++)
+	{
+		if (s[c] == ' ')
+			flag = 0;
+		else if (flag == 0)
+		{
+			flag = 1;
+			w++;
+		}
+	}
+
+	return (w);
+}
+/**
+ * **strtow - splits a string into words
+ * @str: string to split
+ *
+ * Return: pointer to an array of strings (Success)
+ * or NULL (Error)
+ */
 char **strtow(char *str)
 {
-	if (!str || !*str)
-		return (NULL);
-	int i = 0, j = 0, k = 0, len = 0, count = 0;
-	char **f, *col;
+	char **matrix, *tmp;
+	int i, k = 0, len = 0, words, c = 0, start, end;
 
-	while (str[i])
-		count += (str[i++] != ' ' && (str[i] == ' ' || !str[i]));
-	if (count == 0)
+	while (*(str + len))
+		len++;
+	words = count_word(str);
+	if (words == 0)
 		return (NULL);
-	f = malloc(sizeof(char *) * (count + 1));
-	if (!f)
+
+	matrix = (char **) malloc(sizeof(char *) * (words + 1));
+	if (matrix == NULL)
 		return (NULL);
-	i = 0;
-	while (*str)
+
+	for (i = 0; i <= len; i++)
 	{
-		while (*str == ' ')
-			str++;
-		len = 0;
-		while (str[len] != ' ' && str[len])
-			len++;
-		col = malloc(sizeof(char) * (len + 1));
-		if (!col)
+		if (str[i] == ' ' || str[i] == '\0')
 		{
-			while (j-- >= 0)
-				free(f[j]);
-			free(f);
-			return (NULL);
+			if (c)
+			{
+				end = i;
+				tmp = (char *) malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
+					return (NULL);
+				while (start < end)
+					*tmp++ = str[start++];
+				*tmp = '\0';
+				matrix[k] = tmp - c;
+				k++;
+				c = 0;
+			}
 		}
-		for (k = 0; k < len; k++)
-			col[k] = str[k];
-		col[k] = '\0';
-		f[j++] = col;
-		str += len;
+		else if (c++ == 0)
+			start = i;
 	}
-	f[j] = NULL;
-	return (f);
+
+	matrix[k] = NULL;
+
+	return (matrix);
 }
 
