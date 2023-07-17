@@ -1,19 +1,18 @@
-#include "main.h"
-#include <stdlib.h>
+#ifndef DOG_H
+#define DOG_H
 
 /**
- * init_dog - Initialize the struct dog
- * @d: pointer to struct
+ * struct dog - Initialize the struct dog
  * @name: Name of dog
  * @age: Age of dog
  * @owner: Name of owner
+ * Description : just a dog struct
  */
-void init_dog(struct dog *d, char *name, float age, char *owner)
+struct dog
 {
-	if (d != NULL)
-	{
-		d->name = name;
-		d->age = age;
-		d->owner = owner;
-	}
-}
+	char name;
+	char age;
+	char owner;
+};
+
+#endif
