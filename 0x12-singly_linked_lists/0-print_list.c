@@ -1,25 +1,25 @@
-#include "variadic_functions.h"
-#include <stdarg.h>
+#include <stdio.h>
+#include "lists.h"
 
 /**
- * sum_them_all - a fun to calc the sum of all paramters
- * @n: num of paramter
- * @...: variable num
+ * print_list - a fun to print the elements ofa linked list
+ * @h: a pointer
  *
- * Return: return sum of all parameters
+ * Return: the number
  */
-int sum_them_all(const unsigned int n, ...)
+size_t print_list(const list_t *h)
 {
-	unsigned int i;
-	unsigned int sumof = 0;
-	va_list lis;
+	size_t x = 0;
 
-	va_start(lis, n);
+	while (h)
+	{
+		if (!h->str)
+			printf("[0] (nil)\n");
+		else
+			printf("[%u] %x\n", h->len, h->str);
+		h = h->next;
+		x++;
+	}
 
-	for (i = 0; i < n; i++)
-		sumof += va_arg(lis, int);
-
-	va_end(lis);
-
-	return (sumof);
+	return (x);
 }
