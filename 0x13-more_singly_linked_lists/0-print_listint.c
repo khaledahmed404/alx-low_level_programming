@@ -1,11 +1,12 @@
 #include "lists.h"
 
 /**
- * print_listint -a fun to  print all the element
- * @h: linked listt
- * Return: the number of node
+ * print_listint - a fun to  print
+ * @h: linked list
+ * Return: number of nodes
  */
-size_t print_listint(const listin_t *h)
+
+size_t print_listint(const listint_t *h)
 {
 	size_t num = 0;
 
